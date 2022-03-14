@@ -10,3 +10,5 @@ const UsuariosSchema = new mongoose.Schema({
   estaAtivo: { type: Boolean, default: false },
   email: { type: String, required: true }
 })
+
+export default UsuariosSchema
