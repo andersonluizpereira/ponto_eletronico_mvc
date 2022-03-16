@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
 class Database {
   private readonly DB_URL = 'mongodb://localhost:27017/db_portal'
@@ -8,4 +8,4 @@ class Database {
   }
 }
 
-export default new Database()
+export default Database

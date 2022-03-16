@@ -6,13 +6,13 @@ import Database from '@/infra/db'
 
 class StartUp {
   public app: express.Application
-  private readonly _db: Database
+  private readonly db: Database
 
   constructor () {
     this.app = express()
 
-    this._db = new Database().createConnection()
-    // this._db.createConnection()
+    this.db = new Database()
+    void this.db.createConnection()
 
     this.middler()
     this.routes()
