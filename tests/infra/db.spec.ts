@@ -8,12 +8,8 @@ jest.mock('mongoose', () => {
 })
 
 describe('DB', () => {
-  let database: Database
-  beforeEach(() => {
-    database = new Database()
-  })
   it('Chamando e conectando com mongodb', async () => {
-    await database.createConnection()
-    expect(database).toBeDefined()
+    await Database.createConnection()
+    expect(Database).toBeDefined()
   })
 })
