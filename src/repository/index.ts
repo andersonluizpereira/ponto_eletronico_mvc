@@ -1,1 +1,1 @@
-export * as UsuarioRepository from './usuarioRepository'
+export * as UsuariosRepository from './usuarios/usuariosRepository'
