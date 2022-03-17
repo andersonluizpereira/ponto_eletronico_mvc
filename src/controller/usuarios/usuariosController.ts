@@ -19,7 +19,7 @@ class UsuariosController {
       const response = await UsuariosService.getById(_id)
       void Helper.sendResponse(res, HttpStatus.OK, response)
     } catch (error) {
-      console.error(error)
+      void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
   }
 
@@ -29,7 +29,7 @@ class UsuariosController {
       await UsuariosService.create(vm)
       void Helper.sendResponse(res, HttpStatus.OK, 'Noticia cadastrada com sucesso!')
     } catch (error) {
-      console.error(error)
+      void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
   }
 
@@ -40,7 +40,7 @@ class UsuariosController {
       await UsuariosService.update(_id, news)
       void Helper.sendResponse(res, HttpStatus.OK, 'Noticia atualiza com sucesso!')
     } catch (error) {
-      console.error(error)
+      void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
   }
 
@@ -50,7 +50,7 @@ class UsuariosController {
       await UsuariosService.delete(_id)
       void Helper.sendResponse(res, HttpStatus.OK, 'Noticia deletada com sucesso!')
     } catch (error) {
-      console.error(error)
+      void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
   }
 }

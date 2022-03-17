@@ -46,4 +46,48 @@ describe('UsuariosController', () => {
     const response = await UsuariosController.get(req, res)
     expect(UsuariosController).toBeDefined()
   })
+
+  it('UsuariosController chamada de controller metodo getById', async () => {
+    jest.spyOn(UsuariosService, 'getById').mockReturnValueOnce(Promise.resolve(data) as any)
+    const response = await UsuariosController.getById(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+  it('UsuariosController chamada de controller metodo getById Error', async () => {
+    jest.spyOn(UsuariosService, 'getById').mockReturnValueOnce(Promise.reject(new Error('server_error')))
+    const response = await UsuariosController.getById(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+
+  it('UsuariosController chamada de controller metodo create', async () => {
+    jest.spyOn(UsuariosService, 'create').mockReturnValueOnce(Promise.resolve(data) as any)
+    const response = await UsuariosController.create(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+  it('UsuariosController chamada de controller metodo create Error', async () => {
+    jest.spyOn(UsuariosService, 'create').mockReturnValueOnce(Promise.reject(new Error('server_error')))
+    const response = await UsuariosController.create(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+
+  it('UsuariosController chamada de controller metodo update', async () => {
+    jest.spyOn(UsuariosService, 'update').mockReturnValueOnce(Promise.resolve(data) as any)
+    const response = await UsuariosController.update(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+  it('UsuariosController chamada de controller metodo update Error', async () => {
+    jest.spyOn(UsuariosService, 'update').mockReturnValueOnce(Promise.reject(new Error('server_error')))
+    const response = await UsuariosController.update(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+
+  it('UsuariosController chamada de controller metodo delete', async () => {
+    jest.spyOn(UsuariosService, 'delete').mockReturnValueOnce(Promise.resolve(data) as any)
+    const response = await UsuariosController.delete(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
+  it('UsuariosController chamada de controller metodo delete Error', async () => {
+    jest.spyOn(UsuariosService, 'delete').mockReturnValueOnce(Promise.reject(new Error('server_error')))
+    const response = await UsuariosController.delete(req, res)
+    expect(UsuariosController).toBeDefined()
+  })
 })
