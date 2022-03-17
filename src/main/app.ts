@@ -3,7 +3,7 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 
 import Database from '@/infra/db'
-
+import usuariosRouter from '@/main/router/usuariosRouter'
 class StartUp {
   public app: express.Application
   private readonly db: Database
@@ -27,6 +27,7 @@ class StartUp {
     this.app.route('/').get((req, res) => {
       res.send({ versao: '0.0.1' })
     })
+    this.app.use('/', usuariosRouter)
   }
 }
 
