@@ -36,8 +36,8 @@ class UsuariosController {
   async update (req: Request, res: Response): Promise<void> {
     try {
       const _id = req.params.id
-      const news = req.body
-      await UsuariosService.update(_id, news)
+      const usuario = req.body
+      await UsuariosService.update(_id, usuario)
       void Helper.sendResponse(res, HttpStatus.OK, 'Noticia atualiza com sucesso!')
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)

@@ -11,13 +11,13 @@ class UsuariosService {
     return result
   }
 
-  async create (news: any): Promise<any> {
-    const result = await UsuariosRepository.create(news)
+  async create (usuarios: any): Promise<any> {
+    const result = await UsuariosRepository.create(usuarios)
     return result
   }
 
-  async update (_id: string, news: any): Promise<any> {
-    const result = await UsuariosRepository.findByIdAndUpdate(_id, news)
+  async update (_id: string, usuarios: any): Promise<any> {
+    const result = await UsuariosRepository.findByIdAndUpdate(_id, usuarios)
     return result
   }
 
