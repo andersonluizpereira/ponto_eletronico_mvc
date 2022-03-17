@@ -27,7 +27,7 @@ class UsuariosController {
     try {
       const vm = req.body
       await UsuariosService.create(vm)
-      void Helper.sendResponse(res, HttpStatus.OK, 'Noticia cadastrada com sucesso!')
+      void Helper.sendResponse(res, HttpStatus.OK, 'Usuario cadastrado com sucesso!')
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
@@ -38,7 +38,7 @@ class UsuariosController {
       const _id = req.params.id
       const usuario = req.body
       await UsuariosService.update(_id, usuario)
-      void Helper.sendResponse(res, HttpStatus.OK, 'Noticia atualiza com sucesso!')
+      void Helper.sendResponse(res, HttpStatus.OK, 'Usuario atualizado com sucesso!')
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
@@ -48,7 +48,7 @@ class UsuariosController {
     try {
       const _id = req.params.id
       await UsuariosService.delete(_id)
-      void Helper.sendResponse(res, HttpStatus.OK, 'Noticia deletada com sucesso!')
+      void Helper.sendResponse(res, HttpStatus.OK, 'Usuario deletado com sucesso!')
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
