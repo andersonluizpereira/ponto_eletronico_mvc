@@ -8,7 +8,6 @@ const usuariosRouter = express.Router()
 
 usuariosRouter.route('/api/v1/usuarios').get(UsuariosController.get)
 usuariosRouter.route('/api/v1/usuarios/:id').get(UsuariosController.getById)
-usuariosRouter.route('/api/v1/usuarios').post(UsuariosController.create)
 usuariosRouter.route('/api/v1/usuarios/:id').put(UsuariosController.update)
 usuariosRouter.route('/api/v1/usuarios/:id').delete(UsuariosController.delete)
 
