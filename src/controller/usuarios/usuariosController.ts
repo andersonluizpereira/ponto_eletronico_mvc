@@ -26,8 +26,8 @@ class UsuariosController {
   async create (req: Request, res: Response): Promise<void> {
     try {
       const vm = req.body
-      await UsuariosService.create(vm)
-      void Helper.sendResponse(res, HttpStatus.OK, 'Usuario cadastrado com sucesso!')
+      const { email, tokenAcesso } = await UsuariosService.create(vm)
+      void Helper.sendResponse(res, HttpStatus.OK, { email, tokenAcesso })
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }
