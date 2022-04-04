@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login com Validação</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1>Entrar</h1>
+            <div id="error">Revise seus dados</div>
+            <div id="sucesso">Você está logado</div>
+            <div class="label-float">
+                <input type="text" id="usuario" placeholder="" required>
+                <label for="usuario" id="usuariolabel">Usuário</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" id="senha" placeholder="" required>
+                <label for="senha" id="senhalabel">Senha</label>
+                <i class="fa fa-eye" aria-hidden="false"></i>
+            </div>
+
+            <div class="justify-center">
+                <button onclick='entrar()'>Entrar</button>
+            </div>
+
+            <div class="justify-center">
+                <hr>
+            </div>
+
+            <p>Não tem uma conta? <a href='cadastro.html'>Cadastre-se</a></p>
+
+            <script src="script.js"></script>
+            <script src="login.js"></script>
+
+        </div>
+    </div>
+    
+    
+
+
+</body>
+</html>

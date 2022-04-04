@@ -1,12 +1,12 @@
 import UsuariosRepository from '@/repository/usuarios/usuariosRepository'
 import token from '@/infra/token'
 class UsuariosService {
-  async login (tokenAcesso: string, senha: string): Promise<any> {
+  async login (tokenAcesso: string, email: string, senha: string): Promise<any> {
     const usuario = await UsuariosRepository.findOne({
       tokenAcesso
     })
     if (usuario !== undefined && usuario !== null) {
-      if (!token.recoveryDataByToken(tokenAcesso, senha)) {
+      if (!token.recoveryDataByToken(tokenAcesso, email, senha)) {
         return null
       }
       return usuario

@@ -69,20 +69,23 @@ describe('UsuariosService', () => {
   it('Testando chamada UsuariosService.login com retorno objeto', async () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
+    const email = 'andy2903.alp@gmail.com'
 
-    expect(await UsuariosService.login(token, senha)).toBe(usuario)
+    expect(await UsuariosService.login(token, email, senha)).toBe(usuario)
   })
   it('Testando chamada UsuariosService.login', async () => {
     jest.spyOn(UsuariosRepository, 'findOne').mockReturnValueOnce(Promise.resolve(undefined) as any)
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
-    expect(await UsuariosService.login(token, senha)).toBeNull()
+    const email = 'andy2903.alp@gmail.com'
+    expect(await UsuariosService.login(token, email, senha)).toBeNull()
   })
 
   it('Testando chamada UsuariosService.login', async () => {
     jest.spyOn(tokenService, 'recoveryDataByToken').mockReturnValue(false)
     const tokenAcesso = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
-    expect(await UsuariosService.login(tokenAcesso, senha)).toBeNull()
+    const email = 'andy2903.alp@gmail.com'
+    expect(await UsuariosService.login(tokenAcesso, email, senha)).toBeNull()
   })
 })

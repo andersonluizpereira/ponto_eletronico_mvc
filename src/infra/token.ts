@@ -11,9 +11,9 @@ export const generatedToken = (email: String, senha: String): String => {
   return Jwt.sign(payload, 'J4v@5cr1p7 J4v@5cr1p7 J4v@5cr1p7')
 }
 
-export const recoveryDataByToken = (ciphertext: string, senha: string): boolean => {
+export const recoveryDataByToken = (ciphertext: string, email: string, senha: string): boolean => {
   const plaintext = Jwt.verify(ciphertext, 'J4v@5cr1p7 J4v@5cr1p7 J4v@5cr1p7') as any
-  return plaintext.senha === senha
+  return plaintext.senha === senha && plaintext.email === email
 }
 
 export default { generatedToken, recoveryDataByToken }

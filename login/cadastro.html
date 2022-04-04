@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login com Validação</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="cadastro.css">
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1>Cadastro</h1>
+            <div id="erro">Revise seus dados</div>
+            <div id="sucesso">Conta criada com sucesso</div>
+            <div class="label-float">
+                <input type="text" id="nome" placeholder="" required>
+                <label id='labelnome' for="nome">Nome</label>
+            </div>
+
+            <div class="label-float">
+                <input type="text" id="usuario" placeholder="" required>
+                <label id='labelusuario'for="usuario">Usuário</label>
+            </div>
+
+            <div class="label-float">
+                <input type="text" id="email" placeholder="" required>
+                <label id='labelemail' for="email">Email</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" id="senha" placeholder="" required>
+                <label  id='labelsenha' for="senha">Senha</label>
+                <i class="fa fa-eye" aria-hidden="false"></i>
+
+            </div>
+
+            <div class="label-float">
+                <input type="password" id="confirmarsenha" placeholder="" required>
+                <label id='labelconfirmarsenha' for="confirmarsenha">Confirme sua senha</label>
+                <i id='confirmaSenha' class="fa fa-eye" aria-hidden="false"></i>
+            </div>
+
+            <div class="justify-center">
+                <button onclick="cadastrar()">Cadastrar</button>
+            </div>
+
+            <div class="justify-center">
+                <hr>
+            </div>
+
+            <p>Já tem uma conta? <a href='index.html'>Faça o login.</a></p>
+
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+
+
+
+</body>
+</html>

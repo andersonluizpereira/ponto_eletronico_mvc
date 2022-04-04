@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background: rgb(65,80,134);
+    background: linear-gradient(342deg, rgba(65,80,134,1) 0%, rgba(7,212,255,1) 100%);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 120px;
+}
+
+.card {
+    background-color: #ffffff25;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 1px 0px #00000020;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.label-float input {
+    width: 100%;
+    padding: 5px;
+    display: inline-block;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1.5px solid #194b66;
+    outline: none;
+    min-width: 180px;
+    font-size: 15px;
+    transition: all .3s ease-out;
+    border-radius: 0;
+    color: #194b66;
+}
+
+.label-float {
+    position: relative;
+    margin-bottom: 5%;
+    padding-top: 13px;
+    margin-bottom: 5%;
+}
+
+.label-float input:focus {
+    border-bottom: 1.5px solid #ffffff;
+}
+
+.label-float label {
+    color: #194b66;
+    pointer-events: none;
+    font-size: 15px;
+    transition: all .3s ease-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label
+ {
+    font-size: 16px;
+    margin-top: 0;
+    color: white;
+}
+
+button {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    color: #194b66;
+    padding: 6px 12px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: all .1s ease-out;
+
+}
+
+button:hover {
+    background-color: #194b66;
+    color: white;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    margin: 10% 0;
+    width: 80%;
+}
+p {
+    text-align: center;
+
+}
+p a {
+    color:#194b66;
+    font-weight: bold;
+}
+
+p a:hover {
+    transition: all .1s ease-out;
+    color: white;
+}
+
+.fa-eye {
+    position: absolute;
+    top: 22px;
+    right: 2px;
+    cursor: pointer;
+    color:#194b66
+}
+
+.fa-eye:hover {
+    color:#ffffff
+}
+
+#error {
+    color: red;
+    text-align: center;
+    display: none;
+    margin-bottom: 20px;
+}
+
+#sucesso {
+    color: green;
+    text-align: center;
+    display: none;
+
+}
+
+.saircaixa {
+    display: flex;
+    justify-content: center;
+}
