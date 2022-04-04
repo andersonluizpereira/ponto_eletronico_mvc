@@ -1,5 +1,6 @@
 import UsuariosService from '@/services/usuarios/usuariosService'
 import UsuariosRepository from '@/repository/usuarios/usuariosRepository'
+import tokenService from '@/infra/token'
 
 const usuario = [{
   _id: 'any_id',
@@ -24,11 +25,15 @@ jest.mock('@/repository/usuarios/usuariosRepository', () => {
 })
 
 describe('UsuariosService', () => {
+  const bodyCreated = {
+    email: 'andy2903.alp@gmail.com',
+    tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
+  }
   beforeEach(() => {
     jest.spyOn(UsuariosRepository, 'findOne').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'find').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'findById').mockReturnValue(Promise.resolve(usuario) as any)
-    jest.spyOn(UsuariosRepository, 'create').mockReturnValue(Promise.resolve(usuario) as any)
+    jest.spyOn(UsuariosRepository, 'create').mockReturnValue(Promise.resolve(bodyCreated) as any)
     jest.spyOn(UsuariosRepository, 'findByIdAndUpdate').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'findByIdAndRemove').mockReturnValue(Promise.resolve([]) as any)
   })
@@ -50,7 +55,7 @@ describe('UsuariosService', () => {
   })
 
   it('Testando chamada UsuariosService.create com retorno objeto', async () => {
-    expect(await UsuariosService.create(usuario)).toBe(usuario)
+    expect(await UsuariosService.create(usuario)).toBe(bodyCreated)
   })
 
   it('Testando chamada UsuariosService.update com retorno objeto', async () => {
@@ -68,9 +73,16 @@ describe('UsuariosService', () => {
     expect(await UsuariosService.login(token, senha)).toBe(usuario)
   })
   it('Testando chamada UsuariosService.login', async () => {
-    jest.spyOn(UsuariosService, 'login').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(UsuariosRepository, 'findOne').mockReturnValueOnce(Promise.resolve(undefined) as any)
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
     expect(await UsuariosService.login(token, senha)).toBeNull()
+  })
+
+  it('Testando chamada UsuariosService.login', async () => {
+    jest.spyOn(tokenService, 'recoveryDataByToken').mockReturnValue(false)
+    const tokenAcesso = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
+    const senha = '12345678'
+    expect(await UsuariosService.login(tokenAcesso, senha)).toBeNull()
   })
 })
