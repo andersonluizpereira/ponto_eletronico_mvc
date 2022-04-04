@@ -4,7 +4,7 @@ class Auth {
   validate (req: Request, res: Response, next: NextFunction): any {
     const token = String(req.headers['x-api-key'])
 
-    if (token !== '' || token !== undefined || token !== null) {
+    if (token !== '') {
       jwt.verify(token, 'J4v@5cr1p7 J4v@5cr1p7 J4v@5cr1p7', function (err, decoded) {
         if (err != null) {
           return res.status(403).send({
