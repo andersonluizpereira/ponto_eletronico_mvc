@@ -4,6 +4,16 @@ import { Request, Response } from 'express'
 import HttpStatus from 'http-status'
 
 class UsuariosController {
+  async getByLogin (req: Request, res: Response): Promise<void> {
+    try {
+      const { tokenAcesso, senha } = req.body
+      const response = await UsuariosService.login(tokenAcesso, senha)
+      void Helper.sendResponse(res, HttpStatus.OK, response)
+    } catch (error) {
+      void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
+    }
+  }
+
   async get (req: Request, res: Response): Promise<void> {
     try {
       const response = await UsuariosService.get()

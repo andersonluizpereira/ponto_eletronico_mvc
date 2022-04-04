@@ -7,6 +7,7 @@ import Database from '@/infra/db'
 import Auth from '@/infra/auth'
 import usuariosRouter from '@/main/router/usuariosRouter'
 import usuariosRouterCreated from '@/main/router/usuariosRouterCreated'
+import loginRouter from '@/main/router/loginRouter'
 import { healthRoutes } from '@/config/router/health.routes'
 class App {
   public app: express.Application
@@ -63,6 +64,7 @@ class App {
       res.send({ versao: '0.0.1' })
     })
     this.app.use(healthRoutes)
+    this.app.use('/', loginRouter)
     this.app.use('/', usuariosRouterCreated)
     this.app.use(Auth.validate)
     this.app.use('/', usuariosRouter)

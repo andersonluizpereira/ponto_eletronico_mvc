@@ -14,6 +14,7 @@ const usuario = [{
 
 jest.mock('@/repository/usuarios/usuariosRepository', () => {
   return {
+    findOne: jest.fn(),
     find: jest.fn(),
     findById: jest.fn(),
     create: jest.fn(),
@@ -24,6 +25,7 @@ jest.mock('@/repository/usuarios/usuariosRepository', () => {
 
 describe('UsuariosService', () => {
   beforeEach(() => {
+    jest.spyOn(UsuariosRepository, 'findOne').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'find').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'findById').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'create').mockReturnValue(Promise.resolve(usuario) as any)
@@ -57,5 +59,18 @@ describe('UsuariosService', () => {
 
   it('Testando chamada UsuariosService.delete com retorno objeto', async () => {
     expect(await UsuariosService.delete('any_id')).toMatchObject([])
+  })
+
+  it('Testando chamada UsuariosService.login com retorno objeto', async () => {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
+    const senha = '12345678'
+
+    expect(await UsuariosService.login(token, senha)).toBe(usuario)
+  })
+  it('Testando chamada UsuariosService.login', async () => {
+    jest.spyOn(UsuariosService, 'login').mockReturnValueOnce(Promise.resolve(null))
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
+    const senha = '12345678'
+    expect(await UsuariosService.login(token, senha)).toBeNull()
   })
 })

@@ -1,6 +1,19 @@
 import UsuariosRepository from '@/repository/usuarios/usuariosRepository'
-import generatedToken from '@/infra/token'
+import token from '@/infra/token'
 class UsuariosService {
+  async login (tokenAcesso: string, senha: string): Promise<any> {
+    const usuario = await UsuariosRepository.findOne({
+      tokenAcesso
+    })
+    if (usuario !== undefined && usuario !== null) {
+      if (!token.recoveryDataByToken(tokenAcesso, senha)) {
+        return null
+      }
+      return usuario
+    }
+    return null
+  }
+
   async get (): Promise<any> {
     // return await UsuariosRepository.find({}).sort({ _id: -1 }).limit(1000)
     return await UsuariosRepository.find({})
@@ -12,7 +25,7 @@ class UsuariosService {
   }
 
   async create (usuarios: any): Promise<any> {
-    usuarios.tokenAcesso = generatedToken(usuarios.email, usuarios.password)
+    usuarios.tokenAcesso = token.generatedToken(usuarios.email, usuarios.senha)
     const result = await UsuariosRepository.create(usuarios)
     return result
   }
