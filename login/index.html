@@ -1,85 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login com Validação</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="imgheader"><img src="logo-desenvolve.png" alt="Logo desenvolve">
+        </div>
+        <div class="txtheader"><h1>Aula Cadastro Validado com Express (Back-end)</h1></div>
+    </header>
     <div class="container">
-      <div class="card">
-        <h1>Entrar</h1>
-        <div id="error">Revise seus dados</div>
-        <div id="sucesso">Você está logado</div>
-        <div class="label-float">
-          <input type="text" id="usuario" placeholder="" required />
-          <label for="usuario" id="usuariolabel">Usuário</label>
+        <div class="card">
+            <h1>Entrar</h1>
+            <div id="error">Revise seus dados</div>
+            <div id="sucesso">Você está logado</div>
+            <div class="label-float">
+                <input type="text" id="email" placeholder="" required>
+                <label for="email" id="emaillabel">Email</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" id="senha" placeholder="" required>
+                <label for="senha" id="senhalabel">Senha</label>
+                <i class="fa fa-eye" aria-hidden="false"></i>
+            </div>
+
+            <div class="justify-center">
+                <button onclick='entrar()'>Entrar</button>
+            </div>
+
+            <div class="justify-center">
+                <hr>
+            </div>
+
+            <p>Não tem uma conta? <a href='cadastro.html'>Cadastre-se</a></p>
+
+            <script src="script.js"></script>
+            <script src="login.js"></script>
+
         </div>
-
-        <div class="label-float">
-          <input type="password" id="senha" placeholder="" required />
-          <label for="senha" id="senhalabel">Senha</label>
-          <i class="fa fa-eye" aria-hidden="false"></i>
-        </div>
-
-        <div class="justify-center">
-          <button onclick="entrar()">Entrar</button>
-        </div>
-
-        <div class="justify-center">
-          <hr />
-        </div>
-
-        <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-
-        <script src="script.js"></script>
-        <script src="login.js"></script>
-      </div>
     </div>
 
-    <script>
-      function entrar() {
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4";
-        window.localStorage.setItem("token", token);
 
-        const data = {
-          email: document.getElementById("usuario").value,
-          senha: document.getElementById("senha").value,
-          tokenAcesso: window.localStorage.getItem("token"),
-        };
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify(data);
-
-        var requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow",
-        };
-
-        fetch("http://localhost:3000/api/login", requestOptions)
-          .then((response) => response.text())
-          .then((data) => {
-            const usuario = JSON.parse(data)
-            console.log(usuario.result);
-            if(usuario.result === null){
-              document.getElementById("error").style.display = "block";
-            }else{
-              window.location.href = "inicio.html";
-            }
-          })
-          .catch((error) => console.log("error", error));
-      }
-    </script>
-  </body>
+</body>
 </html>
+
+<script>
+  function entrar() {
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4";
+    window.localStorage.setItem("token", token);
+
+    const data = {
+      email: document.getElementById("email").value,
+      senha: document.getElementById("senha").value,
+      tokenAcesso: window.localStorage.getItem("token"),
+    };
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:3000/api/login", requestOptions)
+      .then((response) => response.text())
+      .then((data) => {
+        const usuario = JSON.parse(data)
+        console.log(usuario.result);
+        if(usuario.result === null){
+          document.getElementById("error").style.display = "block";
+        }else{
+          window.location.href = "inicio.html";
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+</script>

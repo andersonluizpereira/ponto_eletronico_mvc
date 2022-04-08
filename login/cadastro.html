@@ -7,58 +7,83 @@
     <title>Login com Validação</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="cadastro.css">
-    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="container">
-        <div class="card">
-            <h1>Cadastro</h1>
-            <div id="erro">Revise seus dados</div>
-            <div id="sucesso">Conta criada com sucesso</div>
-            <div class="label-float">
-                <input type="text" id="nome" placeholder="" required>
-                <label id='labelnome' for="nome">Nome</label>
-            </div>
-
-            <div class="label-float">
-                <input type="text" id="usuario" placeholder="" required>
-                <label id='labelusuario'for="usuario">Usuário</label>
-            </div>
-
-            <div class="label-float">
-                <input type="text" id="email" placeholder="" required>
-                <label id='labelemail' for="email">Email</label>
-            </div>
-
-            <div class="label-float">
-                <input type="password" id="senha" placeholder="" required>
-                <label  id='labelsenha' for="senha">Senha</label>
-                <i class="fa fa-eye" aria-hidden="false"></i>
-
-            </div>
-
-            <div class="label-float">
-                <input type="password" id="confirmarsenha" placeholder="" required>
-                <label id='labelconfirmarsenha' for="confirmarsenha">Confirme sua senha</label>
-                <i id='confirmaSenha' class="fa fa-eye" aria-hidden="false"></i>
-            </div>
-
-            <div class="justify-center">
-                <button onclick="cadastrar()">Cadastrar</button>
-            </div>
-
-            <div class="justify-center">
-                <hr>
-            </div>
-
-            <p>Já tem uma conta? <a href='index.html'>Faça o login.</a></p>
-
+    <header>
+        <div class="imgheader"><img src="logo-desenvolve.png" alt="Logo desenvolve">
         </div>
-    </div>
-    
-    <script src="script.js"></script>
+        <div class="txtheader"><h1>Aula Cadastro Validado com Express (Back-end)</h1></div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="card">
+                <h1>Cadastro</h1>
+                <div id="erro">Revise seus dados</div>
+                <div id="sucesso">Conta criada com sucesso</div>
+                <div class="form">
+                    <div class="formpt1">                
+                        <div class="label-float">
+                            <input type="text" id="nome" placeholder="" required>
+                            <label id='labelnome' for="nome">Nome</label>
+                        </div>
 
+                        <div class="label-float">
+                            <input type="text" id="cpf" placeholder="" required>
+                            <label id='labelcpf' for="cpf">CPF</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="text" id="RG" placeholder="" required>
+                            <label id='labelrg' for="rg">RG</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="date" id="nascimento" placeholder="" required>
+                            <label id='labelnascimento' for="nascimento">Data de Nascimento</label>
+                        </div>
+                    </div>
+                    <div class="formpt2">                
+                        <div class="label-float">
+                            <input type="tel" id="telefone" placeholder="" required>
+                            <label id='labeltelefone' for="telefone">Telefone</label>
+                        </div>
+                        
+                        <div class="label-float">
+                            <input type="text" id="email" placeholder="" required>
+                            <label id='labelemail' for="email">Email</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="password" id="senha" placeholder="" required>
+                            <label  id='labelsenha' for="senha">Senha</label>
+                            <i class="fa fa-eye" aria-hidden="false"></i>
+
+                        </div>
+
+                        <div class="label-float">
+                            <input type="password" id="confirmarsenha" placeholder="" required>
+                            <label id='labelconfirmarsenha' for="confirmarsenha">Confirme sua senha</label>
+                            <i id='confirmaSenha' class="fa fa-eye" aria-hidden="false"></i>
+                        </div>
+                    </div>
+            </div>
+
+
+
+                <div class="justify-center">
+                    <button onclick="cadastrar()">Cadastrar</button>
+                </div>
+
+                <div class="justify-center">
+                    <hr>
+                </div>
+
+                <p>Já tem uma conta? <a href='index.html'>Faça o login.</a></p>
+
+            </div>
+        </div>
+    </main>
 
 
 </body>

@@ -26,7 +26,7 @@ body {
     padding: 30px;
     border-radius: 6px;
     box-shadow: 3px 3px 1px 0px #00000020;
-    width: 350px;
+    width: 600px;
 }
 
 h1 {
@@ -150,4 +150,19 @@ p a:hover {
 .saircaixa {
     display: flex;
     justify-content: center;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 30px;
 }
