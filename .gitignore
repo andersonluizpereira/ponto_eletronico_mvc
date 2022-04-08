@@ -1,5 +1,6 @@
-node_modules
-dist
-coverage
-localstack
-.localstack
+node_modules/
+dist/
+coverage/
+localstack/
+.localstack/
+data/
