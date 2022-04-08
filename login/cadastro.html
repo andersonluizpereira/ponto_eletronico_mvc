@@ -1,90 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login com Validação</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="cadastro.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="cadastro.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <div class="imgheader"><img src="logo-desenvolve.png" alt="Logo desenvolve">
-        </div>
-        <div class="txtheader"><h1>Aula Cadastro Validado com Express (Back-end)</h1></div>
+      <div class="imgheader">
+        <img src="logo-desenvolve.png" alt="Logo desenvolve" />
+      </div>
+      <div class="txtheader">
+        <h1>Aula Cadastro Validado com Express (Back-end)</h1>
+      </div>
     </header>
     <main>
-        <div class="container">
-            <div class="card">
-                <h1>Cadastro</h1>
-                <div id="erro">Revise seus dados</div>
-                <div id="sucesso">Conta criada com sucesso</div>
-                <div class="form">
-                    <div class="formpt1">                
-                        <div class="label-float">
-                            <input type="text" id="nome" placeholder="" required>
-                            <label id='labelnome' for="nome">Nome</label>
-                        </div>
+      <div class="container">
+        <div class="card">
+          <h1>Cadastro</h1>
+          <div id="erro">Revise seus dados</div>
+          <div id="sucesso">Conta criada com sucesso</div>
+          <div class="form">
+            <div class="formpt1">
+              <div class="label-float">
+                <input type="text" id="nome" placeholder="" required />
+                <label id="labelnome" for="nome">Nome</label>
+              </div>
 
-                        <div class="label-float">
-                            <input type="text" id="cpf" placeholder="" required>
-                            <label id='labelcpf' for="cpf">CPF</label>
-                        </div>
+              <div class="label-float">
+                <input
+                  type="text"
+                  id="cpf"
+                  onclick="maskCPF()"
+                  placeholder=""
+                  required
+                />
+                <label id="labelcpf" for="cpf">CPF</label>
+              </div>
 
-                        <div class="label-float">
-                            <input type="text" id="RG" placeholder="" required>
-                            <label id='labelrg' for="rg">RG</label>
-                        </div>
+              <div class="label-float">
+                <input type="text" id="RG" placeholder="" required />
+                <label id="labelrg" for="rg">RG</label>
+              </div>
 
-                        <div class="label-float">
-                            <input type="date" id="nascimento" placeholder="" required>
-                            <label id='labelnascimento' for="nascimento">Data de Nascimento</label>
-                        </div>
-                    </div>
-                    <div class="formpt2">                
-                        <div class="label-float">
-                            <input type="tel" id="telefone" placeholder="" required>
-                            <label id='labeltelefone' for="telefone">Telefone</label>
-                        </div>
-                        
-                        <div class="label-float">
-                            <input type="text" id="email" placeholder="" required>
-                            <label id='labelemail' for="email">Email</label>
-                        </div>
-
-                        <div class="label-float">
-                            <input type="password" id="senha" placeholder="" required>
-                            <label  id='labelsenha' for="senha">Senha</label>
-                            <i class="fa fa-eye" aria-hidden="false"></i>
-
-                        </div>
-
-                        <div class="label-float">
-                            <input type="password" id="confirmarsenha" placeholder="" required>
-                            <label id='labelconfirmarsenha' for="confirmarsenha">Confirme sua senha</label>
-                            <i id='confirmaSenha' class="fa fa-eye" aria-hidden="false"></i>
-                        </div>
-                    </div>
+              <div class="label-float">
+                <input type="date" id="nascimento" placeholder="" required />
+                <label id="labelnascimento" for="nascimento"
+                  >Data de Nascimento</label
+                >
+              </div>
             </div>
+            <div class="formpt2">
+              <div class="label-float">
+                <input type="tel" id="telefone" placeholder="" required />
+                <label id="labeltelefone" for="telefone">Telefone</label>
+              </div>
 
+              <div class="label-float">
+                <input type="text" id="email" placeholder="" required />
+                <label id="labelemail" for="email">Email</label>
+              </div>
 
+              <div class="label-float">
+                <input type="password" id="senha" placeholder="" required />
+                <label id="labelsenha" for="senha">Senha</label>
+                <i class="fa fa-eye" aria-hidden="false"></i>
+              </div>
 
-                <div class="justify-center">
-                    <button onclick="cadastrar()">Cadastrar</button>
-                </div>
-
-                <div class="justify-center">
-                    <hr>
-                </div>
-
-                <p>Já tem uma conta? <a href='index.html'>Faça o login.</a></p>
-
+              <div class="label-float">
+                <input
+                  type="password"
+                  id="confirmarsenha"
+                  placeholder=""
+                  required
+                />
+                <label id="labelconfirmarsenha" for="confirmarsenha"
+                  >Confirme sua senha</label
+                >
+                <i id="confirmaSenha" class="fa fa-eye" aria-hidden="false"></i>
+              </div>
             </div>
+          </div>
+
+          <div class="justify-center">
+            <button onclick="cadastrar()">Cadastrar</button>
+          </div>
+
+          <div class="justify-center">
+            <hr />
+          </div>
+
+          <p>Já tem uma conta? <a href="index.html">Faça o login.</a></p>
         </div>
+      </div>
     </main>
 
+    <script>
+      function cadastrar() {
+        const cadastro = {
+          nome: document.getElementById("nome").value,
+          cpf: document.getElementById("cpf").value,
+          rg: document.getElementById("RG").value,
+          dataNascimento: document.getElementById("nascimento").value,
+          telefone: document.getElementById("telefone").value,
+          email: document.getElementById("email").value,
+          senha: document.getElementById("senha").value,
+          confirmarsenha: document.getElementById("confirmarsenha").value,
+        };
+        this.compararSenha(cadastro);
 
-</body>
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify(cadastro);
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch("http://localhost:3000/api/v1/usuarios", requestOptions)
+          .then((response) => response.text())
+          .then((result) => {
+            console.log(result)
+            window.localStorage.setItem("token", result);
+          })
+          .catch((error) => console.log("error", error));
+      }
+
+      function compararSenha(cadastro) {
+        if (cadastro.senha != cadastro.confirmarsenha) {
+          alert("Senhas não conferem");
+        }
+      }
+      function maskCPF() {
+        const cpf = document.getElementById("cpf");
+        cpf.addEventListener("keyup", function (event) {
+          if (event.keyCode === 8) return;
+          if (event.keyCode < 48 || event.keyCode > 57) {
+            event.preventDefault();
+          }
+          let vr = cpf.value;
+          vr = vr.replace(/\D/g, "");
+          vr = vr.replace(/(\d{3})(\d)/, "$1.$2");
+          vr = vr.replace(/(\d{3})(\d)/, "$1.$2");
+          vr = vr.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+          cpf.value = vr;
+        });
+      }
+    </script>
+  </body>
 </html>
