@@ -1,5 +1,12 @@
 #Desafio para fullstack
 
+#Para executar o sistema tenha o docker instalado e digite
+docker-compose up -d
+
+#Para rodar o sistema
+npm run build && npm run start
+
+
 #N1
 ##Como usuario, eu quero cadastrar poder cadastrar vários usuários, só que eles não podem repetir os dados.
 ##Hoje o sistema está permitindo que cadastre várias pessoas ao mesmo tempo.
