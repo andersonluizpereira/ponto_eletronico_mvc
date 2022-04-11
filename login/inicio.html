@@ -26,36 +26,3 @@
 
 </body>
 </html>
-<script>
-  function entrar(){
-    var myHeaders = new Headers();
-myHeaders.append("x-api-key", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0Ijo0NCwiZXhwIjoxNjQ5NDU1MjQ0NDgzLCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.BVJPP1KqrcfKK4TKN7jzMBGVrjljpfSUM9ayaCgCCso");
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
-
-fetch("http://localhost:3000/api/v1/usuarios", requestOptions)
-  .then(response => response.text())
-  .then(resposta => {
-    const usuarios = JSON.parse(resposta);
-    console.log(usuarios.result);
-    for(let i = 0; i < usuarios.result.length; i++){
-      console.log(usuarios.result[i]);
-      //created list by looping through the array
-      var list = document.createElement("li");
-      list.innerHTML = usuarios.result[i].nome;
-      document.getElementById("logado").appendChild(list);
-      //created list by looping through the array
-      var list = document.createElement("li");
-      list.innerHTML = usuarios.result[i].email;
-      document.getElementById("logado").appendChild(list);
-
-    }
-
-  })
-  .catch(error => console.log('error', error));
-  }
-</script>
