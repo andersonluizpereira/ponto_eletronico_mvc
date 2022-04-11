@@ -6,9 +6,9 @@ import HttpStatus from 'http-status'
 class UsuariosController {
   async getByLogin (req: Request, res: Response): Promise<void> {
     try {
-      const { tokenAcesso, email, senha } = req.body
-      const response = await UsuariosService.login(tokenAcesso, email, senha)
-      void Helper.sendResponse(res, HttpStatus.OK, response)
+      const { email, senha } = req.body
+      const { tokenAcesso } = await UsuariosService.login(email, senha)
+      void Helper.sendResponse(res, HttpStatus.OK, { email, tokenAcesso })
     } catch (error) {
       void Helper.sendResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, error)
     }

@@ -3,14 +3,16 @@ import UsuariosRepository from '@/repository/usuarios/usuariosRepository'
 import tokenService from '@/infra/token'
 
 const usuario = [{
-  _id: 'any_id',
-  nome: 'any_nome',
-  cpf: 'any_cpf',
-  dataNascimento: 'any_dataNascimento',
-  telefone: 'any_telefone',
-  tokenAcesso: 'any_tokenAcesso',
-  estaAtivo: 'any_estaAtivo',
-  email: 'any_email'
+  _id: '6250ad443d8d418313971e87',
+  nome: 'Anderson',
+  cpf: '322.821.668-33',
+  rg: '11111111111',
+  dataNascimento: '1985-02-22T00:00:00.000Z',
+  telefone: '(51) 9612-3180',
+  tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0Ijo0NCwiZXhwIjoxNjQ5NDU1MjQ0NDgzLCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.BVJPP1KqrcfKK4TKN7jzMBGVrjljpfSUM9ayaCgCCso',
+  estaAtivo: false,
+  email: 'andy2903.alp@gmail.com',
+  __v: 0
 }]
 
 jest.mock('@/repository/usuarios/usuariosRepository', () => {
@@ -30,7 +32,7 @@ describe('UsuariosService', () => {
     tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
   }
   beforeEach(() => {
-    jest.spyOn(UsuariosRepository, 'findOne').mockReturnValue(Promise.resolve(usuario) as any)
+    jest.spyOn(UsuariosRepository, 'findOne').mockReturnValue(Promise.resolve(usuario[0]) as any)
     jest.spyOn(UsuariosRepository, 'find').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'findById').mockReturnValue(Promise.resolve(usuario) as any)
     jest.spyOn(UsuariosRepository, 'create').mockReturnValue(Promise.resolve(bodyCreated) as any)
@@ -67,25 +69,22 @@ describe('UsuariosService', () => {
   })
 
   it('Testando chamada UsuariosService.login com retorno objeto', async () => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
     const email = 'andy2903.alp@gmail.com'
 
-    expect(await UsuariosService.login(token, email, senha)).toBe(usuario)
+    expect(await UsuariosService.login(email, senha)).toBe(usuario)
   })
   it('Testando chamada UsuariosService.login', async () => {
     jest.spyOn(UsuariosRepository, 'findOne').mockReturnValueOnce(Promise.resolve(undefined) as any)
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
     const email = 'andy2903.alp@gmail.com'
-    expect(await UsuariosService.login(token, email, senha)).toBeNull()
+    expect(await UsuariosService.login(email, senha)).toBeNull()
   })
 
   it('Testando chamada UsuariosService.login', async () => {
     jest.spyOn(tokenService, 'recoveryDataByToken').mockReturnValue(false)
-    const tokenAcesso = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
     const senha = '12345678'
     const email = 'andy2903.alp@gmail.com'
-    expect(await UsuariosService.login(tokenAcesso, email, senha)).toBeNull()
+    expect(await UsuariosService.login(email, senha)).toBeNull()
   })
 })
