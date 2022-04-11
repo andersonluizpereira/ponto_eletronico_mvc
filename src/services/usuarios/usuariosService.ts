@@ -6,17 +6,17 @@ class UsuariosService {
       email
     })
     if (usuarios !== undefined && usuarios !== null) {
-      if (!token.recoveryDataByToken(usuarios.tokenAcesso, email, senha)) {
+      const recoveryDataByToken = await token.recoveryDataByToken(usuarios.tokenAcesso, email, senha)
+      if (!recoveryDataByToken) {
         return null
       }
-      usuarios.tokenAcesso = token.generatedToken(usuarios.email, usuarios.senha)
+      usuarios.tokenAcesso = await token.generatedToken(email, senha)
       return this.update(usuarios._id, usuarios)
     }
     return null
   }
 
   async get (): Promise<any> {
-    // return await UsuariosRepository.find({}).sort({ _id: -1 }).limit(1000)
     return await UsuariosRepository.find({})
   }
 
@@ -26,7 +26,7 @@ class UsuariosService {
   }
 
   async create (usuarios: any): Promise<any> {
-    usuarios.tokenAcesso = token.generatedToken(usuarios.email, usuarios.senha)
+    usuarios.tokenAcesso = await token.generatedToken(usuarios.email, usuarios.senha)
     const result = await UsuariosRepository.create(usuarios)
     return result
   }

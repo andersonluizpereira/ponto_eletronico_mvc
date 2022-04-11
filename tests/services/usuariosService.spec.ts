@@ -9,8 +9,9 @@ const usuario = [{
   rg: '11111111111',
   dataNascimento: '1985-02-22T00:00:00.000Z',
   telefone: '(51) 9612-3180',
-  tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0Ijo0NCwiZXhwIjoxNjQ5NDU1MjQ0NDgzLCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.BVJPP1KqrcfKK4TKN7jzMBGVrjljpfSUM9ayaCgCCso',
+  tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoyMywiZXhwIjoxNjQ5NjkyODIzOTc4LCJzZW5oYSI6IiQyYiQxMiR5RjVqMkFaZm1TclNhbzdHU2JNNWFlVnk2UTJLaHFveGNiUk9adE1NLmRQMzIubWdGU3hqaSIsImVtYWlsIjoiYW5keTI5MDMuYWxwQGdtYWlsLmNvbSJ9.IRIbUEpQb7EWlCC2VUfS3t2v--qhTHsz-SDDZjur0P4',
   estaAtivo: false,
+  senha: '12345678',
   email: 'andy2903.alp@gmail.com',
   __v: 0
 }]
@@ -29,7 +30,7 @@ jest.mock('@/repository/usuarios/usuariosRepository', () => {
 describe('UsuariosService', () => {
   const bodyCreated = {
     email: 'andy2903.alp@gmail.com',
-    tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoxNywiZXhwIjoxNjQ5MDg0NDE3MjI1LCJzZW5oYSI6IjEyMzQ1Njc4IiwiZW1haWwiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIn0.jzTHad9NOW-RIJMMX_vC489Lv_Sro1eJrz8hM3E0rJ4'
+    tokenAcesso: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbmR5MjkwMy5hbHBAZ21haWwuY29tIiwiaWF0IjoyMywiZXhwIjoxNjQ5NjkyODIzOTc4LCJzZW5oYSI6IiQyYiQxMiR5RjVqMkFaZm1TclNhbzdHU2JNNWFlVnk2UTJLaHFveGNiUk9adE1NLmRQMzIubWdGU3hqaSIsImVtYWlsIjoiYW5keTI5MDMuYWxwQGdtYWlsLmNvbSJ9.IRIbUEpQb7EWlCC2VUfS3t2v--qhTHsz-SDDZjur0P4'
   }
   beforeEach(() => {
     jest.spyOn(UsuariosRepository, 'findOne').mockReturnValue(Promise.resolve(usuario[0]) as any)
@@ -57,7 +58,7 @@ describe('UsuariosService', () => {
   })
 
   it('Testando chamada UsuariosService.create com retorno objeto', async () => {
-    expect(await UsuariosService.create(usuario)).toBe(bodyCreated)
+    expect(await UsuariosService.create(usuario[0])).toBe(bodyCreated)
   })
 
   it('Testando chamada UsuariosService.update com retorno objeto', async () => {
@@ -82,7 +83,7 @@ describe('UsuariosService', () => {
   })
 
   it('Testando chamada UsuariosService.login', async () => {
-    jest.spyOn(tokenService, 'recoveryDataByToken').mockReturnValue(false)
+    jest.spyOn(tokenService, 'recoveryDataByToken').mockReturnValue(Promise.resolve(false) as any)
     const senha = '12345678'
     const email = 'andy2903.alp@gmail.com'
     expect(await UsuariosService.login(email, senha)).toBeNull()
