@@ -1,3 +1,4 @@
+export * from './emailAdapter'
 export * from './rabbitmqAdapter'
 export * from './db'
 export * from './helper'
