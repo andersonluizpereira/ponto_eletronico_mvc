@@ -1,7 +1,6 @@
 import { HttpClient } from '@/infra/http'
 
 import axios from 'axios'
-import { assert } from 'console'
 
 jest.mock('axios')
 
@@ -28,6 +27,20 @@ describe('Request API Marvel', () => {
     const response = await httpClient.getAllCharacters()
 
     expect(response.code).toBe(200)
+    expect(fakeAxios.get).toHaveBeenCalledTimes(1)
+  })
+
+  it('Testa chamadas API Marvel with error', async () => {
+    fakeAxios.get.mockResolvedValueOnce({
+      data: {
+        code: 409
+      }
+    })
+    expect.assertions(2)
+
+    const response = await httpClient.getAllCharacters()
+
+    expect(response.code).toBe(409)
     expect(fakeAxios.get).toHaveBeenCalledTimes(1)
   })
 })
