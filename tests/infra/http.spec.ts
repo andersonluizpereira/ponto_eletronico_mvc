@@ -22,11 +22,13 @@ describe('Request API Marvel', () => {
   })
 
   it('Testa chamadas API Marvel', async () => {
-    expect.assertions(2)
+    expect.hasAssertions()
+    expect.assertions(3)
 
     const response = await httpClient.getAllCharacters()
 
     expect(response.code).toBe(200)
+    expect(response).toHaveProperty('code')
     expect(fakeAxios.get).toHaveBeenCalledTimes(1)
   })
 
@@ -36,11 +38,13 @@ describe('Request API Marvel', () => {
         code: 409
       }
     })
-    expect.assertions(2)
+    expect.hasAssertions()
+    expect.assertions(3)
 
     const response = await httpClient.getAllCharacters()
 
     expect(response.code).toBe(409)
+    expect(response).toHaveProperty('code')
     expect(fakeAxios.get).toHaveBeenCalledTimes(1)
   })
 })
