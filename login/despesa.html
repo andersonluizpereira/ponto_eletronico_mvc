@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Despesas</title>
+  </head>
+  <body>
+    <h1>Despesas</h1>
+    <div class="container">
+      <label for="despesa">Despesa</label>
+      <input type="text" name="despesa" id="despesa" />
+      <label for="valor">Valor</label>
+      <input type="text" name="valor" id="valor" />
+      <label for="data">Data</label>
+      <input type="date" name="data" id="data" />
+    </div>
+    <input
+      type="button"
+      onclick="adicionarDespesa()"
+      value="Adicionar Despesa"
+    />
+  </body>
+</html>
+<script>
+  function adicionarDespesa() {
+    let contas = [];
+    let despesa = document.getElementById("despesa").value;
+    let valor = document.getElementById("valor").value;
+    let data = document.getElementById("data").value;
+    let conta = {
+      despesa: despesa,
+      valor: valor,
+      data: data,
+    };
+    contas.push(conta);
+    localStorage.setItem("contas", JSON.stringify(contas));
+  }
+</script>
